@@ -31,15 +31,25 @@ document.querySelector('.super-stats').addEventListener('change', e => {
 
   // 1) Create a variable named clicked to store the checkbox input that was just clicked
   //    - `e.target` will be helpful here
-
+const clicked = e.target;
   // 2) Create a variable named clickedType to store the `data-type` attribute of the checkbox that was just clicked
   //    - the `getAttribute` method will be helpful here
-
+const clickedType = clicked.getAttribute('data-type');
   // 3) Log out the two variables you just created to confirm their values
-
+console.log(clicked);
+console.log(clickedType);
   // 4) Loop over the checkbox input elements
     // 5) In the loop, create a variable named `checkboxType` to store the `data-type` attribute of the `checkboxes[i]` in the loop's current iteration = `checkboxes[i].getAttribute('data-type');`
-    
+for (let i = 0 ; i < checkboxes.length; i++) {
+  const checkboxType = checkboxes[i].getAttribute('data-type');
+  if (clickedType === checkboxType && clicked !== checkboxes[i]){
+    if (clicked.checked) {
+      checkboxes[i].disabled = true;
+    } else {
+      checkboxes[i].disabled = false;
+    }
+  }
+}
     // 6) Create an `if` statement to check which items to disable/enable.  The if statement needs two conditions: 
     //    - We only want to disable/enable the item if it has the same 'data-ype' as the item that was checked/unchecked, 
     //    - So check if the checkboxType and the clickedType variables equal
